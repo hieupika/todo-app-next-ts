@@ -17,33 +17,39 @@ const TodoList = (props: Props) => {
   const dispatch = useAppDispatch();
 
   const filteredTodoList = (() => {
-    const filteredList = todosList.filter((e) =>
+    const filteredList = todosList.filter(e =>
       e.title.toLowerCase().includes(searchText.toLowerCase())
     );
     if (todoType !== 'all') {
       const isDone = todoType === 'done';
-      return filteredList.filter((e) => e.isDone === isDone);
+      return filteredList.filter(e => e.isDone === isDone);
     }
     return filteredList;
   })();
 
-  const handleClickRemove = useCallback((id: string) => {
-    dispatch(removeTodo(id));
-  }, [dispatch]);
+  const handleClickRemove = useCallback(
+    (id: string) => {
+      dispatch(removeTodo(id));
+    },
+    [dispatch]
+  );
 
-  const handleClickTodo = useCallback((id: string) => {
-    dispatch(toggleDoneTodo(id));
-  }, [dispatch]);
+  const handleClickTodo = useCallback(
+    (id: string) => {
+      dispatch(toggleDoneTodo(id));
+    },
+    [dispatch]
+  );
 
   return (
-    <ul className='list-group'>
-      {filteredTodoList.map((e) => (
+    <ul className="list-group">
+      {filteredTodoList.map(e => (
         <li
           key={e.id}
-          className='list-group-item list-group-item-action'
+          className="list-group-item list-group-item-action"
           style={{ cursor: 'pointer' }}
         >
-          <div className='d-flex align-items-center gap-2'>
+          <div className="d-flex align-items-center gap-2">
             <span
               className={`flex-grow-1${
                 e.isDone ? ' text-decoration-line-through' : ''
@@ -53,15 +59,18 @@ const TodoList = (props: Props) => {
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
               }}
-              onClick={() => handleClickTodo(e.id)}
+              onClick={() => {
+                handleClickTodo(e.id);
+              }}
             >
               {e.title}
             </span>
             <button
-              className='btn btn-outline-secondary btn-sm'
+              className="btn btn-outline-secondary btn-sm"
               onClick={() => handleClickRemove(e.id)}
+              type="button"
             >
-              <i className='bi bi-trash3' />
+              <i className="bi bi-trash3" />
             </button>
           </div>
         </li>
