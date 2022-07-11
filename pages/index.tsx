@@ -96,7 +96,7 @@ const Home: NextPage = () => {
               <option value="undone">Uncompleted</option>
               <option value="done">Completed</option>
             </select>
-            <label className="input-group-text">Filter</label>
+            <span className="input-group-text">Filter</span>
           </div>
 
           <TodoList searchText={searchText} todoType={todoType} />

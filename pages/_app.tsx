@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/es/integration/react';
+import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from '../apps/store';
 
 function MyApp({ Component, pageProps }: AppProps) {
